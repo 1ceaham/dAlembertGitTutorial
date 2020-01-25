@@ -20,7 +20,11 @@
   * `$ git config --global user.email "email@example.com"` *(Note: if signing up for GitHub, use the same email here.)*
   * The above commands set your ID for all repos, but can also be set on a per-repo basis by omitting `--global`.
 4. GitHub account\*
-  * 
+  * Sign up at https://github.com/ with the email you set in git.
+  * Be sure to enable two factor authentication (2FA) with an app. Best practice is *NOT* to give a SMS number as they are vulnerable to [sim swap attacks](https://en.wikipedia.org/wiki/SIM_swap_scam).
+  * Print out your recovery codes and keep them somewhere safe.
+  * Authentication can be handled in a number of ways, as detailed [here](https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage). Long story short, if you are on Windows, use [this](https://github.com/Microsoft/Git-Credential-Manager-for-Windows), and if you are on Mac, use keychain with `$ git config --global credential.helper osxkeychain`. If you're on another flavor, you have some tradeoffs to consider.
+\*: Note that this is not necessary for this tutorial to be valuable. It bears pointing out that GitHub is owned by Microsoft, and while they are outside of the scope of today's discussion, there are valid concerns about GitHub with respect to open-source, free, non-proprietary, and decentralized software that lives outside of the purview of American sovereignty / political demands. It is absolutely possible to use git without a centralized repository, or at least with an open-source alternative (see [SourceHut](https://sourcehut.org/), [GitLab](https://about.gitlab.com/)), but given the immediate lack of a supported tool at IJLR∂A, we will use it as an example of how to interface with these types of systems. That said, its popularity means that collaboration frequently happens there in industry (where some may consider it a "standard") and academia, and may therefore be of use for you to learn.
 
 ## Why version control?
 
