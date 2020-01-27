@@ -1,4 +1,4 @@
-# Git Tutorial - Institut ∂'Alembert - January 31, 2020
+# Version Control & Git - Institut ∂'Alembert - January 31, 2020
 {:.no_toc}
 
 ## Overview
@@ -8,8 +8,10 @@
 
 ## Prerequisites
 0. **_BACK UP YOUR WORK_**
+  * Version control is not a replacement for backups!
+  * If you haven't done this recently, do it now before messing around with your file system!
 1. \*nix terminal
-  * Linux / Mac: You already have one of these!
+  * Linux / Mac: You already have one of these 🤙
   * Windows 10: Use the Windows Subsystem for Linux (WSL). See how to get set up [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10); I suggest Ubuntu 18.04 LTS.
   * Windows 8 / 8.1: See the git section below.
   * Windows 7: Please note that this version of Windows has reached its End-of-Life and will no longer receive security updates. It appears that it is still possible to upgrade to Windows 10 for free, so consider doing that. Otherwise, you should be able to follow the same instructions as Windows 8.
@@ -18,7 +20,7 @@
   * Windows 7 / 8 / 8.1: Since we will cover git's command line interface (CLI), your best bet is [Git for Windows](https://gitforwindows.org/). Alternatively, there are GUI tools (like GitHub Desktop) that are useful and perhaps *more* intuitive, but do not necessarily expose all of the tools and cross-platform consistency the CLI provides.
 3. Set up name and email
   * `git config --global user.name "Mona Lisa"`
-  * `git config --global user.email "email@example.com"` *(Note: if signing up for GitHub, use the same email here.)*
+  * `git config --global user.email "email@example.com"` *(Note: if signing up for GitHub, use the same email here. It's OK to use a different one, but you'll have to change a setting to ensure your commits are associated with your account.)*
   * The above commands set your ID for all repos, but can also be set on a per-repo basis by omitting `--global`.
 4. GitHub account\*
   * Sign up at https://github.com/ with the email you set in git.
@@ -26,26 +28,36 @@
   * Print out your recovery codes and keep them somewhere safe.
   * Authentication can be handled in a number of ways, as detailed [here](https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage). Long story short, if you are on Windows, use [this](https://github.com/Microsoft/Git-Credential-Manager-for-Windows), and if you are on Mac, use keychain with `git config --global credential.helper osxkeychain`. If you're on another flavor, you have some tradeoffs to consider.
 
-\*: Optional. While the topic is outside of the scope of today's discussion, some may object to the use of GitHub as a code host. GitHub is owned by Microsoft and presents certain concerns with respect to open-source, free, non-proprietary, and decentralized software ideals, not to mention a desire to avoid a de facto monoculture. GitHub is incorporated and hosted in the US. Using git without a centralized repository, or at least with an open-source alternative (see [SourceHut](https://sourcehut.org/), [GitLab](https://about.gitlab.com/)) is absolutely possible, but given the immediate lack of a supported tool at IJLR∂A, we will use it as an example of how to interface with these types of systems. That said, its popularity means that collaboration frequently happens there in industry and academia, and may therefore be of use for you to learn.
+\*Optional. While the topic is outside of the scope of today's discussion, some may object to the use of GitHub as a code host. GitHub is owned by Microsoft and presents certain concerns with respect to open-source, free, non-proprietary, and decentralized software ideals, not to mention a desire to avoid a de facto monoculture. GitHub is incorporated and hosted in the US. Using git without a centralized repository, or at least with an open-source alternative (see [SourceHut](https://sourcehut.org/), [GitLab](https://about.gitlab.com/)) is absolutely possible, but given the immediate lack of a supported tool at IJLR∂A, we will use it as an example of how to interface with these types of systems. That said, its popularity means that collaboration frequently happens there in industry and academia, and may therefore be of use for you to learn.
 
-## Why version control?
-* Controlled sync
-* 
+## What is version control?
+Version control is a term used to represent the idea that content (code, articles, 
 
 ## What is git?
+Git is a version control system (VCS) 
 
-## What *NOT* to version
+## What *not* to version
+*Or*, at least what *not* to upload to GitHub
+
 * Generally, "data"
+  * Is yours backed up?
 * Large / binary files
+  * Probably ok to include a few photos, but not 3 hours of audio
+  * Of course, no meaningful "diffs"
+  * For an alternative approach, see the [Git Large File System](https://git-lfs.github.com/).
 * Secrets
   * SSH keys
   * Passwords
   * User info
 * Build artifacts / generated code
-* Other VCS
+* Other VCSs
 * As a replacement for backups
 
+# Interactive tutorial
 ## Getting started with git on your own code
+### `git init`
+
+### `git commit`
 
 ## Working with remote repositories
 ### Adding a remote
@@ -57,7 +69,7 @@ At this point, we should clarify that git can work over the internet using HTTPS
 
 For example, let's make a new bare repo on GitHub and use it as a remote for our toy repo.
 
-### `git pull`
+### `git fetch`, `git pull`
 
 ### `git clone`
 This is the most common way to get a remote repository onto your local machine, but it's more-or-less the same thing as copying the content and adding the source repository as a remote so that you can continue to interact with the "upstream" (often shared) version. Therefore, it's also valid to download a zip of the whole repo (including the .git folder), decompress it where you want, and manually `git remote add` as before.
@@ -75,10 +87,16 @@ For example, `master` (the default name of the branch you are on when initializi
 
 Eventually, in this model, features that are finished (say you successfully `add-pizza`) get merged into `development`, and when all of the bugs have been ironed out and it's time to make a release, that is finally merged into `master` where most people will go to get the latest stable version of the codebase.
 
-This is perhaps the second main reason to use a VCS.
+**This is perhaps the second main reason to use a VCS.**
+
+`git checkout -b`
+
+`git switch <branchname>`
 
 ### GitHub "Fork and Pull" Model
-Collaboration on GitHub often takes a branch-centered workflow as above. But what happens when you are not a collaborator on a repo you would like to contribute to?
+Collaboration on GitHub often takes a branch-centered workflow as above. But what happens when you are not a collaborator on a repo you would like to contribute to? You can fork it (thus creating a copy under your own account), and assuming a permissive license, modify it however you like. Frequently, this part of the work is done just as above, with branches. Then, using the web interface, you can file a "Pull Request" to merge your forked, branched version back into the original repo.
 
 ## More resources
 Want to know how git actually works under the hood? [Git from the inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out).
+
+[How to undo (almost) anything in git](https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/)
