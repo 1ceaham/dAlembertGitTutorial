@@ -27,17 +27,20 @@
   * Be sure to enable two factor authentication (2FA) with an app. Best practice is *NOT* to give a SMS number as they are vulnerable to [sim swap attacks](https://en.wikipedia.org/wiki/SIM_swap_scam).
   * Print out your recovery codes and keep them somewhere safe.
   * Authentication can be handled in a number of ways, as detailed [here](https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage). Long story short, if you are on Windows, use [this](https://github.com/Microsoft/Git-Credential-Manager-for-Windows), and if you are on Mac, use keychain with `git config --global credential.helper osxkeychain`. If you're on another flavor, you have some tradeoffs to consider.
+5. Think about where to perform the tutorial
+  * Some people create a directory like `~/Projects`. This can be any useful, consistent place to import and run code.
+  * Of course, the concepts covered here can be applied anywhere in the file system, but if you're just starting out, it's probably best not to experiment with your academic work.
 
 \*Optional. While the topic is outside of the scope of today's discussion, some may object to the use of GitHub as a code host. GitHub is owned by Microsoft and presents certain concerns with respect to open-source, free, non-proprietary, and decentralized software ideals, not to mention a desire to avoid a de facto monoculture. GitHub is incorporated and hosted in the US. Using git without a centralized repository, or at least with an open-source alternative (see [SourceHut](https://sourcehut.org/), [GitLab](https://about.gitlab.com/)) is absolutely possible, but given the immediate lack of a supported tool at IJLR∂A, we will use it as an example of how to interface with these types of systems. That said, its popularity means that collaboration frequently happens there in industry and academia, and may therefore be of use for you to learn.
 
 ## What is version control?
-Version control is a term used to represent the idea that content (code, articles, 
+Version control is a term used to represent the idea that changes to content (code, articles, configuration) can be tracked over time.
 
 ## What is git?
-Git is a version control system (VCS) 
+Git is a version control system (VCS) that implements many of the concepts above.
 
 ## What *not* to version
-*Or*, at least what *not* to upload to GitHub
+Or, at least what *not* to upload to GitHub
 
 * Generally, "data"
   * Is yours backed up?
@@ -87,16 +90,19 @@ For example, `master` (the default name of the branch you are on when initializi
 
 Eventually, in this model, features that are finished (say you successfully `add-pizza`) get merged into `development`, and when all of the bugs have been ironed out and it's time to make a release, that is finally merged into `master` where most people will go to get the latest stable version of the codebase.
 
-**This is perhaps the second main reason to use a VCS.**
+**This is perhaps the second most important reason to use a VCS.**
 
 `git checkout -b`
 
 `git switch <branchname>`
 
 ### GitHub "Fork and Pull" Model
-Collaboration on GitHub often takes a branch-centered workflow as above. But what happens when you are not a collaborator on a repo you would like to contribute to? You can fork it (thus creating a copy under your own account), and assuming a permissive license, modify it however you like. Frequently, this part of the work is done just as above, with branches. Then, using the web interface, you can file a "Pull Request" to merge your forked, branched version back into the original repo.
+Collaboration on GitHub often takes a branch-centered workflow as above. But what happens when you are not a collaborator on a repo you would like to contribute to? You can fork it (thus creating a copy under your own account), and assuming a permissive license, modify it however you like. Frequently, this part of the work is done just as above, with branches. Then, using the web interface, you can file a "Pull Request" to merge your forked, branched version back into the original repo. The owner can respond, perhaps offering comments or suggestions, and if they like the changes you've made, can bring them into the original repo.
+
+### Other Methods
+Of course, collaboration is not limited to these forms. Some groups use [mailing lists](https://en.wikipedia.org/wiki/Linux_kernel_mailing_list) to send [patches](https://git-send-email.io) via email, including comments, discussion, and logging. Some services introduce webhooks or enforce continuous integration (CI) rules that can automatically test, build, and deploy complex software projects, making it possible to fix a bug from your cell phone. 
 
 ## More resources
 Want to know how git actually works under the hood? [Git from the inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out).
 
-[How to undo (almost) anything in git](https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/)
+[How to undo (almost) anything in git.](https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/)
