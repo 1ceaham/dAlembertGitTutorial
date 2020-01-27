@@ -36,10 +36,17 @@
 ## What is version control?
 Version control is a term used to represent the idea that changes to content (code, articles, configuration) can be tracked over time. This can be as simple as adding a version number to note how many revisions a document has gone through (which may not actually preserve the previous revisions, though in the case of a book, those previous revisions are out in the world). At present, where much of our content is digital ephemera, it's as important as ever to keep track of changes to content - not necessarily just for a single file, but for complex collections of interdependent modules - as well as the real-world demands on and outcomes resulting from such a project. In short, we're describing modern software development.
 
-We think of ourselves as scientists, but in reality, most of us are also developers. If you write code, have dependencies that change (but that you need to control to guarantee consistency), write in text files that you update, or anxiously make copies of folders in the fear of losing or breaking something, version control can help you to track and (if need be) recover your work.
+We think of ourselves as scientists, but in reality, most of us are also developers. If you code, have dependencies that change (but that you need to control to guarantee consistency), write in text files that you update, or anxiously make copies of folders in the fear of losing or breaking something, version control can help you to track and (if need be) recover your work.
 
 ## What is git?
-Git is a version control system (VCS) that implements many of the concepts above.
+Git is a version control system (VCS) that implements many of the concepts above. A git repository is simply a directory that is being tracked with git. A repository can be on your local machine or on a remote server. Git is a distributed VCS, meaning that each user tracks the whole history of a given repository - though they might all be on different computers, each copy has a local working version and knows everything that occurred to arrive at it (though they may be in varying states of synchrony).
+
+In git, there is no need to "check out" or "freeze" a file for everyone else when someone is working on it, as may be the case in a centralized VCS. As such, multiple authors can track their work locally simultaneously, eventually communicating their changes to others whose repositories are then updated to match. This style of work also informs the culture and norms of working with git, particularly with respect to "rewriting history" - while this is allowable locally (and sometimes even encouraged, in the case of "squashing" commits before a merge), it's a pretty grave faux pas when working with a shared repository.
+
+### Contrast with GitHub
+GitHub *is not* git. 
+
+### Comparison with other VCS
 
 ## What *not* to version
 Or, at least, what *not* to upload to GitHub
@@ -55,9 +62,9 @@ Or, at least, what *not* to upload to GitHub
   * Passwords
   * User info
 * Build artifacts / generated code
-* Other VCSs
+* Other VCS
 * As a replacement for backups
-* Similarly, VCSs generally don't like to be synced (e.g. Dropbox)
+* Similarly, VCS generally don't like to be synced (e.g. Dropbox)
 
 # Interactive tutorial
 ## Getting started with git on your own code
