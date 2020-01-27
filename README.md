@@ -44,7 +44,9 @@ Git is a version control system (VCS) that implements many of the concepts above
 In git, there is no need to "check out" or "freeze" a file for everyone else when someone is working on it, as may be the case in a centralized VCS. As such, multiple authors can track their work locally simultaneously, eventually communicating their changes to others whose repositories are then updated to match. This style of work also informs the culture and norms of working with git, particularly with respect to "rewriting history" - while this is allowable locally (and sometimes even encouraged, in the case of "squashing" commits before a merge), it's a pretty grave faux pas when working with a shared repository.
 
 ### Contrast with GitHub
-GitHub *is not* git. 
+GitHub *is not* git. GitHub is a host that is usually interfaced with through git, but which provides some other services and access control on top of the "version control" part of git. For example, reporting a bug on GitHub is not a part of git, whereas the web interface allows users to perform some git-like actions in a repository (such as making an edit to a file and committing it). Most interaction with GitHub happens through git, usually by copying a repository locally or by pushing your changes back up to the hosted version.
+
+This centralization comes with benefits, as a consistently available shared host can be a convenient place to sync things across many machines (one possible use case of git) or as a definitive source of releases (basically named revisions) for users that are not going to interact with the source content. Other things that GitHub offers (as is the case with other service providers) are integration with CI/CD pipelines (automatic actions that happen when you update code), forums, and other things that are useful for the work surrounding development but are not related to actually changing content. However, it cannot be stressed enough that those other things are not git.
 
 ### Comparison with other VCS
 
@@ -68,6 +70,8 @@ Or, at least, what *not* to upload to GitHub
 
 # Interactive tutorial
 ## Getting started with git on your own code
+From here on out, I'm going to call a repository a "repo." It's shorter.
+
 ### `git init`
 
 ### `git add`
