@@ -34,19 +34,21 @@
 \*Optional. While the topic is outside of the scope of today's discussion, some may object to the use of GitHub as a code host. GitHub is owned by Microsoft and presents certain concerns with respect to open-source, free, non-proprietary, and decentralized software ideals, not to mention a desire to avoid a de facto monoculture. GitHub is incorporated and hosted in the US. Using git without a centralized repository, or at least with an open-source alternative (see [SourceHut](https://sourcehut.org/), [GitLab](https://about.gitlab.com/)) is absolutely possible, but given the immediate lack of a supported tool at IJLR∂A, we will use it as an example of how to interface with these types of systems. That said, its popularity means that collaboration frequently happens there in industry and academia, and may therefore be of use for you to learn.
 
 ## What is version control?
-Version control is a term used to represent the idea that changes to content (code, articles, configuration) can be tracked over time.
+Version control is a term used to represent the idea that changes to content (code, articles, configuration) can be tracked over time. This can be as simple as adding a version number to note how many revisions a document has gone through (which may not actually preserve the previous revisions, though in the case of a book, those previous revisions are out in the world). At present, where much of our content is digital ephemera, it's as important as ever to keep track of changes to content - not necessarily just for a single file, but for complex collections of interdependent modules - as well as the real-world demands on and outcomes resulting from such a project. In short, we're describing modern software development.
+
+We think of ourselves as scientists, but in reality, most of us are also developers. If you write code, have dependencies that change (but that you need to control to guarantee consistency), write in text files that you update, or anxiously make copies of folders in the fear of losing or breaking something, version control can help you to track and (if need be) recover your work.
 
 ## What is git?
 Git is a version control system (VCS) that implements many of the concepts above.
 
 ## What *not* to version
-Or, at least what *not* to upload to GitHub
+Or, at least, what *not* to upload to GitHub
 
 * Generally, "data"
   * Is yours backed up?
-* Large / binary files
+* Binary files (either lots or large)
   * Probably ok to include a few photos, but not 3 hours of audio
-  * Of course, no meaningful "diffs"
+  * No meaningful "diffs"
   * For an alternative approach, see the [Git Large File System](https://git-lfs.github.com/).
 * Secrets
   * SSH keys
@@ -55,10 +57,15 @@ Or, at least what *not* to upload to GitHub
 * Build artifacts / generated code
 * Other VCSs
 * As a replacement for backups
+* Similarly, VCSs generally don't like to be synced (e.g. Dropbox)
 
 # Interactive tutorial
 ## Getting started with git on your own code
 ### `git init`
+
+### `git add`
+
+Special note on `.gitignore`:
 
 ### `git commit`
 
@@ -103,6 +110,8 @@ Collaboration on GitHub often takes a branch-centered workflow as above. But wha
 Of course, collaboration is not limited to these forms. Some groups use [mailing lists](https://en.wikipedia.org/wiki/Linux_kernel_mailing_list) to send [patches](https://git-send-email.io) via email, including comments, discussion, and logging. Some services introduce webhooks or enforce continuous integration (CI) rules that can automatically test, build, and deploy complex software projects, making it possible to fix a bug from your cell phone. 
 
 ## More resources
-Want to know how git actually works under the hood? [Git from the inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out).
+Want to know how git actually works under the hood? [Git from the inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out). Hint: it's hashes all the way down.
 
-[How to undo (almost) anything in git.](https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/)
+[How to undo (almost) anything in git.](https://github.blog/2015-06-08-how-to-undo-almost-anything-with-git/) You know, just in case you make a mistake.
+
+For reference, a [GitHub-written cheat sheet](https://github.github.com/training-kit/downloads/github-git-cheat-sheet/) with some useful definitions and reminders.
