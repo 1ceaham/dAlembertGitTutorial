@@ -15,6 +15,7 @@
   * Windows 10: Use the Windows Subsystem for Linux (WSL). See how to get set up [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10); I suggest Ubuntu 18.04 LTS.
   * Windows 8 / 8.1: See the git section below.
   * Windows 7: Please note that this version of Windows has reached its End-of-Life and will no longer receive security updates. It appears that it is still possible to upgrade to Windows 10 for free, so consider doing that. Otherwise, you should be able to follow the same instructions as Windows 8.
+  * Final note: You should probably have at least a passing familiarity with how to get around at a command line. This tutorial will provide most of the commands you'll need, but it's good to have some working practice getting around. One resource with everything you'll ever need to know is [The Art of Command Line](https://github.com/jlevy/the-art-of-command-line), but if you have a better idea, we'll see how you might suggest in a little bit...
 2. git
   * Linux / Mac / WSL: You probably already have git, so check in your terminal with `git --version`. If not, check out the [installation instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
   * Windows 7 / 8 / 8.1: Since we will cover git's command line interface (CLI), your best bet is [Git for Windows](https://gitforwindows.org/). Alternatively, there are GUI tools (like GitHub Desktop) that are useful and perhaps *more* intuitive, but do not necessarily expose all of the tools and cross-platform consistency the CLI provides.
@@ -49,6 +50,11 @@ GitHub *is not* git. GitHub is a host that is usually interfaced with through gi
 This centralization comes with benefits, as a consistently available shared host can be a convenient place to sync things across many machines (one possible use case of git) or as a definitive source of releases (basically named revisions) for users that are not going to interact with the source content. Other things that GitHub offers (as is the case with other service providers) are integration with CI/CD pipelines (automatic actions that happen when you update code), forums, and other things that are useful for the work surrounding development but are not related to actually changing content. However, it cannot be stressed enough that those other things are not git.
 
 ### Comparison with other VCS
+Perhaps the first thing to point out in comparing git to other VCS is its "popularity," at least in the open-source realm. (It's also frequently complained about, but it appears to get the job done...) A StackOverflow developer survey in 2018 found that [87% of their respondents](https://web.archive.org/web/20190530142357/https://insights.stackoverflow.com/survey/2018/#work-_-version-control) used git for version control. With that popularity comes benefits, as in the massive amount of information, integrations, and know-how in the world. Just looking at the major hosts, it's clear to see that git is the VCS of choice. While it may not be so clearly cut in the professional world, where some industries lean toward their own set of tools in common, I think it's fair to say that git isn't going anywhere anytime soon, and you will probably come across it if there is ever a case where you need to do some collaborative software development.
+
+That said, other VCS can be successful by doing things differently or more specifically. For example, while pipelines exist for CI/CD that hook into git, this is essentially a fancy way of scheduling a process to run on someone else's computer (the cloud™ ☁). Some programming languages that have bindings with a custom VCS can do cool things that general purpose tools like git cannot, particularly with respect to provability and correctness.
+
+Without going too much into detail here, I would personally argue that it's worth it to learn git as a general case and pick up other VCS as you interact with projects that require them.
 
 ## What *not* to version
 Or, at least, what *not* to upload to GitHub
@@ -58,7 +64,7 @@ Or, at least, what *not* to upload to GitHub
 * Binary files (either lots or large)
   * Probably ok to include a few photos, but not 3 hours of audio
   * No meaningful "diffs"
-  * For an alternative approach, see the [Git Large File System](https://git-lfs.github.com/).
+  * For an alternative approach, see the [Git Large File System](https://git-lfs.github.com/). (👋 Franck!)
 * Secrets
   * SSH keys
   * Passwords
@@ -70,13 +76,16 @@ Or, at least, what *not* to upload to GitHub
 
 # Interactive tutorial
 ## Getting started with git on your own code
-From here on out, I'm going to call a repository a "repo." It's shorter.
+From here on out, I'm going to call a repository a "repo" since it's shorter.
 
 ### `git init`
+As I mentioned before, a repo is simply a directory where git is tracking changes to files. So, let's create a new repo!
+
+Make sure you're in the directory you want to hold your repos (at least for this tutorial) with `pwd`. Then, make a new directory to hold your repo with `mkdir myTestRepo`.
 
 ### `git add`
 
-Special note on `.gitignore`:
+Special note on `.gitignore`: this hidden file controls what git will not track by default. For example, if you have a particular subfolder that you want *git* to *ignore* (see what I did there), you can put it in your `.gitignore`. Similarly, it accepts wildcards such that you could exclude all `.wav` files from being tracked. Super useful!
 
 ### `git commit`
 
