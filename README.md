@@ -124,7 +124,29 @@ Alright, if this was real work, we'd probably have something to change in our sc
 * `, I can use git!` - Enter some text.
 * `Esc`, `:wq`, `Enter` - Return to command mode, save, and quit, as before.
 
-Now check `git status`: what do you see?
+Run your script as before to make sure it works - you should always test your code before deploying it, after all!
+
+Now check `git status`: what do you see? Hopefully, it reports that your file has been modified. If you want to check what has changed between the previous commit and your working directory, you can call `git diff --word-diff hello.sh`, which shows changed words rather than characters (fairly useful in a longer file, as long as it's semantically meaningful).
+
+Let's save another snapshot of our repo. As before, we can do this in two steps: adding files to the index, and then committing the changes. Since this change is really simple, we can also do it in a single step with `git commit -a -m "Add qualifications."`.
+
+Now that we have two commits, we can view the history of the repo with `git log`, and (even though we just did it), we could compare the two versions of our file to see what changed. To do this, we can specify the commits to compare in a few different ways. One option is to refer to commits relative to our current location, which is named `HEAD`. Thus, you can compare the current commit to the previous one with `git diff --word-diff HEAD~ HEAD hello.sh`, where the `~` means "parent of." This also works with additional `~`, like `HEAD~~~`, meaning "the parent of the parent of the parent of" our reference commit. Of course, with a linear history, you could specify any two commits using this notation, but other more convenient ways include `HEAD~4` (with any number of generations), `HEAD@{yesterday}` (what our reference commit was yesterday), or by simply typing an unambiguous beginning of the commit hash (like `1c002d` as shorthand for `1c002dd4b536e7479fe34593e72e6c6c1819e53b`). See more on this [here](https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection).
+
+One last thing to point out here is that in the actual file system, there's only ever one copy of our file. We've saved the history of `hello.sh`, but there aren't multiple versions of it sitting around in our directory, even when we diff historical versions of it.
+
+### Going back in time
+Now, let's imagine that we want to "go back in time" to a particular commit. This would allow us to run code as it was at some point in time (assuming no other untracked changes), view previous revisions of a document, or just see what we started with.
+
+**_DANGER ALERT:_** If you have uncommitted changes in your working directory, the following commands can destroy them, leading to lost work. Make sure you `git status` to make sure your working directory is clean!
+
+Let's say we want to go back to our previous revision - the parent of `HEAD`. Using the notation from diffing before, we can change our reference commit with `git checkout HEAD~`. You should see some things about a `'detached HEAD' state`, which means that our `HEAD` is not at the "tip" (meaning the latest commit) of any branch. (The only branch we have at the moment is `master`, the default.) You should also see the hash and commit message of our new location.
+
+Let's verify that our local copy is in fact the previous version of the script. You can print the file to the screen with `cat hello.sh` and see that is indeed the case. At this point, you could run code or do whatever you wanted to go back in time for. You can even begin a new branch (more on that later) and use this as a jumping off point for different changes than what you've already made. For now, to return to where we were before, we can `checkout` the reference we left at the tip of the branch with `git checkout master`.
+
+### Reverting a change
+Ok, let's pretend like you really don't like those additions you made, and you want your `master` branch to reflect the previous version of the file. One way to do this is with `git revert HEAD`, which will add a new commit "reversing" the last one (in this case, "untyping" the additional text we wrote). It will open your default text editor to allow you to set a commit message (like with `git commit -m`), which by default states the message and commit that are being reversed. This is great because even though the tip of your branch now reflects the state that you want, we actually preserve the history of changing our mind, without destroying any data.
+
+Of course, it's possible to rewrite history and delete the commit where we added the text initially, but that leads to **_SUPER DANGER LAND_**, and we don't want to go there during this tutorial. For now, let's just be happy with the fact that we're back at our simple little "hello world."
 
 ## Working with remote repositories
 ### Adding a remote
