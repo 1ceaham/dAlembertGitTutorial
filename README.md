@@ -188,7 +188,7 @@ For example, `master` (the default name of the branch you are on when initializi
 
 Eventually, in this model, features that are finished (say you successfully `add-pizza`) get merged into `development`, and when all of the bugs have been ironed out and it's time to make a release, that is finally merged into `master` where most people will go to get the latest stable version of the codebase.
 
-**This is perhaps the second most important reason to use a VCS.**
+If you think back to earlier, when we went "back in time" by moving our `HEAD` reference to a previous commit, you can think of branches as labels on particular commits in the history graph of your repository. When you go back to a commit and start a new branch (for a feature perhaps), you're essentially just adding a new label at that commit that you can refer to by name. When you then add a few new commits, the label comes along with you and stays at the tip of the branch. When that branch is eventually merged back in somewhere else, that label is concurrent with the label of the branch that it was merged into, and can therefore be deleted (though it will still be present in git's `reflog` history).
 
 `git checkout -b`
 
