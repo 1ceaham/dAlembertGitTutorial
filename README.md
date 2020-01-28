@@ -148,20 +148,32 @@ Ok, let's pretend like you really don't like those additions you made, and you w
 
 Of course, it's possible to rewrite history and delete the commit where we added the text initially, but that leads to **_SUPER DANGER LAND_**, and we don't want to go there during this tutorial. For now, let's just be happy with the fact that we're back at our simple little "hello world."
 
-## Working with remote repositories
-### Adding a remote
+## Working with remote repos
+### Adding a remote and pushing
 Whether on your network, another drive, or on a centralized server (like GitHub), you can add a link from your local repo to a remote repo with `git remote add`, a name, and a location. If you are beginning with a local repo, it's common to initialize the remote as a bare repo (meaning it doesn't have any items or any commits) so that you can directly `git push` (or, in other words, copy) the current state of your local repo to the new location without any conflicts.
 
 At this point, we should clarify that git can work over the internet using HTTPS or SSH, both of which have upsides and downsides. We'll talk about these in the context of GitHub, but other services (and it's not uncommon to have credentials with multiple servers) would be approached in much the same fashion.
 * HTTPS: If you set up a credential manager earlier, the first time you authenticate, you should be able to use your username, password, and 2FA device to sign in and have your credentials securely cached. If not, you'll have to enter your username and password for authentication each and every time you connect. This is frequently easier to work with in terms of access, as SSH ports can sometimes be blocked by firewalls.
 * SSH: Much like authenticating with a server, it's possible to interface with GitHub via SSH. One advantage of using SSH keys to authenticate is that they do not provide access to your actual GitHub account, meaning there is some additional security in terms of recovery in case a key is compromised. It can also allow for finer-grained access control. On the other hand, generating and securing SSH keys (such as with ssh-agent) is technically demanding, and the authentication process at the command line may not be as frictionless as with HTTPS.
 
-For example, let's make a new bare repo on GitHub and use it as a remote for our toy repo.
+For example, let's make a new bare repo on GitHub and use it as a remote for our toy repo. On GitHub, click the little "plus" and select ["New repository."](https://github.com/new) For the name, put in `myTestRepo`. (It doesn't have to be the same as the directory you created, but is still convenient.) You can make it private if you like, and skip the rest as it suggests (since we're importing the repo from our machine). Hit the "Create repository" button.
 
-### `git fetch`, `git pull`
+Then, just as the second option on the next page states, simply replace `Username` with your actual username below. In this case, we're naming the GitHub remote `origin`, which is a super common name for this type of workflow, and pushing our (only) branch, `master`.
+```
+git remote add origin https://github.com/Username/myTestRepo.git
+git push -u origin master
+```
+You'll probably have to enter your password, or maybe do some 2FA, but in the end, the GitHub repo will have the same content as your local version. You can check this by going to https://github.com/Username/myTestRepo.
 
-### `git clone`
-This is the most common way to get a remote repository onto your local machine, but it's more-or-less the same thing as copying the content and adding the source repository as a remote so that you can continue to interact with the "upstream" (often shared) version. Therefore, it's also valid to download a zip of the whole repo (including the .git folder), decompress it where you want, and manually `git remote add` as before.
+Now, every time you want to do some work locally, you can simply make a commit and `git push origin master` to send all of your changes up to GitHub.
+
+### Pulling from a remote
+GitHub also allows you to edit files through their web interface, where "saving" is the same thing as creating a new commit. Try that out and re-add some text, create a new file, or do something else to your repo to get it out-of-sync with your local copy.
+
+Afterward, you can check for changes in the remote repo with `git fetch`. If you see that there are changes (which would obviously be more common in the case where other collaborators have made changes and pushed them to GitHub), you can reflect those changes in your local repo with `git pull`. Note that if you have local changes or if you've made commits beyond or different from what is on the remote server, you'll have to merge them before git allows you to `pull`.
+
+### Initializing a repo from a remote
+`git clone` is the most common way to get a remote repository (that you don't already have) onto your local machine. It's more-or-less the same thing as copying the content and adding the source repository as a remote so that you can continue to interact with the "upstream" (often shared) version. Therefore, it's also valid to download a zip of the whole repo (including the .git folder), decompress it where you want, and manually `git remote add` as before.
 
 ### What is this webpage?
 I'm glad you asked! In fact, this page was automagically generated by GitHub Pages from a repo that you can find [here](https://github.com/1ceaham/dAlembertGitTutorial). Since this page is a regular repo, you can see its history, `git clone` it to your machine, modify it, add your own commits, and generally do whatever you need to with it! You are, of course, bound by the license of the content - for example, on GitHub, if a repo does not have a license, then it is copyrighted and you do not have the right to use, modify or redistribute it, only to read it (even then, only on GitHub).
