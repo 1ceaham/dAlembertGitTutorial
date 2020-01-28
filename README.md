@@ -21,7 +21,7 @@
   * Windows 7 / 8 / 8.1: Since we will cover git's command line interface (CLI), your best bet is [Git for Windows](https://gitforwindows.org/). Alternatively, there are GUI tools (like GitHub Desktop) that are useful and perhaps *more* intuitive, but do not necessarily expose all of the tools and cross-platform consistency the CLI provides.
 3. Set up name and email
   * `git config --global user.name "Mona Lisa"`
-  * `git config --global user.email "email@example.com"` *(Note: if signing up for GitHub, use the same email here. It's OK to use a different one, but you'll have to change a setting to ensure your commits are associated with your account.)*
+  * `git config --global user.email "email@example.com"` *(Note: if signing up for GitHub, use the same email here. It's OK to use a different one, but you'll have to change a setting to ensure your commits are associated with your account. Alternatively, if you want to keep your email address private when pushing to a public repository, sign up for GitHub first and follow the directions given [here](https://help.github.com/en/github/setting-up-and-managing-your-github-user-account/setting-your-commit-email-address).)*
   * The above commands set your ID for all repos, but can also be set on a per-repo basis by omitting `--global`.
 4. GitHub account\*
   * Sign up at https://github.com/ with the email you set in git.
