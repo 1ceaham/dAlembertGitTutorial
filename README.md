@@ -76,7 +76,7 @@ Or, at least, what *not* to upload to GitHub
 * Similarly, VCS generally don't like to be synced (e.g. Dropbox)
 
 # Interactive tutorial
-## Getting started with git on your own code
+## Getting started with git
 From here on out, I'm going to call a repository a "repo" since it's shorter.
 
 ### Initializing a repo
@@ -148,6 +148,9 @@ Ok, let's pretend like you really don't like those additions you made, and you w
 
 Of course, it's possible to rewrite history and delete the commit where we added the text initially, but that leads to **_SUPER DANGER LAND_**, and we don't want to go there during this tutorial. For now, let's just be happy with the fact that we're back at our simple little "hello world."
 
+### Working on your own code
+The knowledge you've gained up until this point is all you need to version your own code locally, which is *perfectly fine*. If there's no reason for you to put your code up on the internet, then don't do it! After all, you back up your work regularly, so there shouldn't be any need to duplicate it further, right? With these tools, you can use `git init` in a directory, `git add` the files you want to track (and probably put the rest in your `.gitignore`), `git commit` to take a snapshot, and keep on developing! No more need to keep versions in different folders. When you remember that nice idea you had a few months ago, you can look at `git log` to figure out which revision had the idea, `git checkout <commit>` or `git diff <commit> <file>` to see how it was different from what you've got currently, and then hop back to whatever you were working on with `git checkout master`. If you don't care about the internet, skip straight down to the [branches](#branches) section below for a few more tools that will help you to be even more productive.
+
 ## Working with remote repos
 ### Adding a remote and pushing
 Whether on your network, another drive, or on a centralized server (like GitHub), you can add a link from your local repo to a remote repo with `git remote add`, a name, and a location. If you are beginning with a local repo, it's common to initialize the remote as a bare repo (meaning it doesn't have any items or any commits) so that you can directly `git push` (or, in other words, copy) the current state of your local repo to the new location without any conflicts.
@@ -196,7 +199,7 @@ One final note is that people use branches for all kinds of things, and they don
 Collaboration on GitHub often takes a branch-centered workflow as above. But what happens when you are not a collaborator on a repo you would like to contribute to? You can fork it (thus creating a copy under your own account), and assuming a permissive license, modify it however you like. Frequently, this part of the work is done just as above, with branches. Then, using the web interface, you can file a "Pull Request" to merge your forked, branched version back into the original repo. The owner can respond, perhaps offering comments or suggestions, and if they like the changes you've made, can bring them into the original repo.
 
 ### Other Methods
-Of course, collaboration is not limited to these forms. Some groups use [mailing lists](https://en.wikipedia.org/wiki/Linux_kernel_mailing_list) to send [patches](https://git-send-email.io) via email, including comments, discussion, and logging. Some services introduce webhooks or enforce continuous integration (CI) rules that can automatically test, build, and deploy complex software projects, making it possible to fix a bug from your cell phone. 
+Of course, collaboration is not limited to these forms. Some groups use [mailing lists](https://en.wikipedia.org/wiki/Linux_kernel_mailing_list) to send [patches](https://git-send-email.io) via email, including comments, discussion, and logging. Some services introduce webhooks or enforce continuous integration (CI) rules that can automatically test, build, and deploy complex software projects, making it possible to fix a bug from your cell phone.
 
 ## More resources
 Want to know how git actually works under the hood? [Git from the inside out](https://codewords.recurse.com/issues/two/git-from-the-inside-out). Hint: it's hashes all the way down.
