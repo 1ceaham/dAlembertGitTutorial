@@ -79,16 +79,52 @@ Or, at least, what *not* to upload to GitHub
 ## Getting started with git on your own code
 From here on out, I'm going to call a repository a "repo" since it's shorter.
 
-### `git init`
+### Initializing a repo
 As I mentioned before, a repo is simply a directory where git is tracking changes to files. So, let's create a new repo!
 
-Make sure you're in the directory you want to hold your repos (at least for this tutorial) with `pwd`. Then, make a new directory to hold your repo with `mkdir myTestRepo`.
+Make sure you're in the directory you want to hold your repos (at least for this tutorial) with `pwd`. Then, make a new directory to hold your repo with `mkdir myTestRepo`. Move into it with `cd myTestRepo`.
 
-### `git add`
+Now, type `git init`. Ta-da! You have a git repo. If you `ls -a`, you'll see that there's a `.git` directory. That's where all of the tracking magic happens.
 
-Special note on `.gitignore`: this hidden file controls what git will not track by default. For example, if you have a particular subfolder that you want *git* to *ignore* (see what I did there), you can put it in your `.gitignore`. Similarly, it accepts wildcards such that you could exclude all `.wav` files from being tracked. Super useful!
+Our repo is a little boring, so we should add some content. If you haven't used vi(m) before, follow the next series of commands very carefully.
 
-### `git commit`
+* `vi hello.sh` - Open a new file in vi (or vim) named `hello.sh`.
+* `i` - Enter "Insert" mode.
+* Type (or copy/paste, if your terminal supports that):
+    ```
+    #!/bin/bash
+    echo "Hello world"
+    ```
+* `Esc` - Leave "Insert" mode.
+* `:wq`, `Enter` - Issue the command "Write, then quit."
+
+Great! Now we have something in our repo. Make your script executable with `chmod +x hello.sh` and then run it with `./hello.sh` to make sure it works.
+
+At this point, git can see that the file is there, but it is not actually being tracked. How do we know? Running `git status` shows the current state of whatever repo you're in. As a side note, the repo that you're in is determined by climbing parent directories until a `.git` directory is found. Running that command at this point shows that `hello.sh` is "untracked," meaning that if we take a snapshot of our repo at this moment in time, it will not be included in our account of the repo's history. That said, we could, in fact, take a snapshot if we wanted to - it would just be pretty boring (and not really following convention).
+
+As a personal recommendation, while you're getting familiar with things, run `git status` all the time. Seriously. Before and after almost any of the commands we'll discuss here, toss out a `git status` and make sure what you see is what you expect. Like Dory, just keep `git status`, just keep `git status`, just keep `git status`, `git status`, `git status`.
+
+### Stage files to be added / updated
+How can we ask git to track our new script? As suggested by our status report, we can use `git add hello.sh` to add our file to the index. The index is the list of new or changed files that would be included in a snapshot in addition to all of the other already-tracked files that haven't changed.
+
+There are a couple of powerful ways to use `git add` when you have multiple files to change or add. You can use wildcards such as `*.txt` to select for particular filetypes in the current folder (this uses shell expansion), or you can escape the asterisk (e.g. `\*`) to let git recurse through all subdirectories as well. If you don't need to be selective, a simple `git add -A` will recursively make your index match the working state of your repo.
+
+There are also cases (some of which are mentioned above) where you don't want to add particular files, but would still like to use `git add -A` (to avoid having to come up with a specially-crafted filter for only the files you want in the index). For this, you can create a hidden file named `.gitignore`, which controls what git will not track by default. For example, if you have a particular subfolder that you want *git* to *ignore*, you can list it in your `.gitignore`. Similarly, it accepts wildcards such that you could exclude `*.wav` files from being tracked. Super useful! This can really clean up a messy or long `git status` report.
+
+### Take a snapshot
+Finally, we want to capture what our repo looks like at this moment in time. To do so, make sure that your index looks how you want with `git status`, then type `git commit -m "Initial commit."`. Congratulations! You've saved your first step in the history of this repo. The part in quotes after the `-m` is the commit message, or a short description of what changed, which you should never forget to add.
+
+### Make a change
+Alright, if this was real work, we'd probably have something to change in our script. So, let's add a little more text to our file. We're going to use `vi` again, so follow along closely!
+
+* `vi hello.sh` - Open the editor.
+* `j` - We're in command mode, so this doesn't insert a character, but instead moves the cursor down a line.
+* `llllllllllllllllll` - Move the cursor between `d` and `"`. If you overshoot, you can press `h` as many times as you need to go back the other way.
+* `i` - Enter insert mode.
+* `, I can use git!` - Enter some text.
+* `Esc`, `:wq`, `Enter` - Return to command mode, save, and quit, as before.
+
+Now check `git status`: what do you see?
 
 ## Working with remote repositories
 ### Adding a remote
