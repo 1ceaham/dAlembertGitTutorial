@@ -1,12 +1,15 @@
 # Interactive tutorial
 ## Getting started with git
-### Initializing a repo
-Make sure you're in the directory you want to hold your repos (at least for this tutorial) with `pwd`. Then, make a new directory to hold your repo with `mkdir myTestRepo`. Move into it with `cd myTestRepo`.
+### Make a project directory
+* `pwd`
+* `mkdir myTestRepo`
+* `cd myTestRepo`.
 
-Now, type `git init`. Ta-da! You have a git repo. If you `ls -a`, you'll see that there's a `.git` directory. That's where all of the tracking magic happens.
+### Initialize a repo
+* `git init`
+* `ls -a`: `.git`
 
-Our repo is a little boring, so we should add some content. If you haven't used vi(m) before, follow the next series of commands very carefully.
-
+### Add content
 * `vi hello.sh` - Open a new file in vi (or vim) named `hello.sh`.
 * `i` - Enter "Insert" mode.
 * Type (or copy/paste, if your terminal supports that):
@@ -16,8 +19,8 @@ Our repo is a little boring, so we should add some content. If you haven't used 
     ```
 * `Esc` - Leave "Insert" mode.
 * `:wq`, `Enter` - Issue the command "Write, then quit."
-
-Great! Now we have something in our repo. Make your script executable with `chmod +x hello.sh` and then run it with `./hello.sh` to make sure it works.
+* `chmod +x hello.sh`
+* `./hello.sh`
 
 At this point, git can see that the file is there, but it is not actually being tracked. How do we know? Running `git status` shows the current state of whatever repo you're in. As a side note, the repo that you're in is determined by climbing parent directories until a `.git` directory is found. Running that command at this point shows that `hello.sh` is "untracked," meaning that if we take a snapshot of our repo at this moment in time, it will not be included in our account of the repo's history. That said, we could, in fact, take a snapshot if we wanted to - it would just be pretty boring (and not really following convention).
 
