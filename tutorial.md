@@ -22,16 +22,19 @@
 * `chmod +x hello.sh`
 * `./hello.sh`
 
-At this point, git can see that the file is there, but it is not actually being tracked. How do we know? Running `git status` shows the current state of whatever repo you're in. As a side note, the repo that you're in is determined by climbing parent directories until a `.git` directory is found. Running that command at this point shows that `hello.sh` is "untracked," meaning that if we take a snapshot of our repo at this moment in time, it will not be included in our account of the repo's history. That said, we could, in fact, take a snapshot if we wanted to - it would just be pretty boring (and not really following convention).
-
-As a personal recommendation, while you're getting familiar with things, run `git status` all the time. Seriously. Before and after almost any of the commands we'll discuss here, toss out a `git status` and make sure what you see is what you expect. Like Dory, just keep `git status`, just keep `git status`, just keep `git status`, `git status`, `git status`.
+### See what git sees
+* `git status`: "untracked"
 
 ### Stage files to be added / updated
-How can we ask git to track our new script? As suggested by our status report, we can use `git add hello.sh` to add our file to the index. The index is the list of new or changed files that would be included in a snapshot in addition to all of the other already-tracked files that haven't changed.
+`git add hello.sh`
 
-There are a couple of powerful ways to use `git add` when you have multiple files to change or add. You can use wildcards such as `*.txt` to select for particular filetypes in the current folder (this uses shell expansion), or you can escape the asterisk (e.g. `\*`) to let git recurse through all subdirectories as well. If you don't need to be selective, a simple `git add -A` will recursively make your index match the working state of your repo.
+Other wildcards:
+* `*.txt` - nonrecursive
+* `\*.txt` - subdir recursive
+* `git add -A` - match working directory
 
-There are also cases (some of which are mentioned above) where you don't want to add particular files, but would still like to use `git add -A` (to avoid having to come up with a specially-crafted filter for only the files you want in the index). For this, you can create a hidden file named `.gitignore`, which controls what git will not track by default. For example, if you have a particular subfolder that you want *git* to *ignore*, you can list it in your `.gitignore`. Similarly, it accepts wildcards such that you could exclude `*.wav` files from being tracked. Super useful! This can really clean up a messy or long `git status` report.
+### Ignore files
+* `.gitignore`
 
 ### Take a snapshot
 Finally, we want to capture what our repo looks like at this moment in time. To do so, make sure that your index looks how you want with `git status`, then type `git commit -m "Initial commit."`. Congratulations! You've saved your first step in the history of this repo. The part in quotes after the `-m` is the commit message, or a short description of what changed, which you should never forget to add.
