@@ -75,6 +75,11 @@ Or, at least, what *not* to upload to GitHub
 * As a replacement for backups
 * Similarly, VCS generally don't like to be synced (e.g. Dropbox)
 
+## Comparison with regular backups
+It's true that recording backups regularly (by which I mean nightly, or weekly, and saving past occurrences) is a form of version control. However, it may not be valid to call it a VCS in the sense that there's no structured way to associate those snapshots in time of your full system with meaningful changes in the files you're actually interested in. If there are changes to a document, there may be some revisions that are "skipped" entirely by the backup, or if there aren't very frequent changes, either deduplication will eliminate the extras or there will be a bunch of extra copies lying around that aren't meaningful. By comparison, by making purposeful "commits" to a desired set of files, you get the added benefit of having a named, timestamped history of how and why things changed, without having to "hope" that your backup captured them at the right moment.
+
+Furthermore, it is of course possible (and recommended) to back up your VCS with the rest of your system. Since, as we'll see, git lives alongside your other files, it shouldn't take any extra work for this to happen anyway. Remember to take occasional offsite backups, as well as possibly a cloud backup to ensure that you never lose your data!
+
 # Interactive tutorial
 ## Getting started with git
 From here on out, I'm going to call a repository a "repo" since it's shorter.
@@ -147,6 +152,8 @@ Let's verify that our local copy is in fact the previous version of the script. 
 Ok, let's pretend like you really don't like those additions you made, and you want your `master` branch to reflect the previous version of the file. One way to do this is with `git revert HEAD`, which will add a new commit "reversing" the last one (in this case, "untyping" the additional text we wrote). It will open your default text editor to allow you to set a commit message (like with `git commit -m`), which by default states the message and commit that are being reversed. This is great because even though the tip of your branch now reflects the state that you want, we actually preserve the history of changing our mind, without destroying any data.
 
 Of course, it's possible to rewrite history and delete the commit where we added the text initially, but that leads to **_SUPER DANGER LAND_**, and we don't want to go there during this tutorial. For now, let's just be happy with the fact that we're back at our simple little "hello world."
+
+Now, assuming you've backed up your system (which has automatically captured your git history as well, since it's just a folder), you also have a backup of of the history of that file. Great!
 
 ### Working on your own code
 The knowledge you've gained up until this point is all you need to version your own code locally, which is *perfectly fine*. If there's no reason for you to put your code up on the internet, then don't do it! After all, you back up your work regularly, so there shouldn't be any need to duplicate it further, right? With these tools, you can use `git init` in a directory, `git add` the files you want to track (and probably put the rest in your `.gitignore`), `git commit` to take a snapshot, and keep on developing! No more need to keep versions in different folders. When you remember that nice idea you had a few months ago, you can look at `git log` to figure out which revision had the idea, `git checkout <commit>` or `git diff <commit> <file>` to see how it was different from what you've got currently, and then hop back to whatever you were working on with `git checkout master`. If you don't care about the internet, skip straight down to the [branches](#branches) section below for a few more tools that will help you to be even more productive.
